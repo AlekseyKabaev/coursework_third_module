@@ -47,6 +47,7 @@ def account_transformation(info):
 
 
 def displaying_last_five_transactions():
+    """Вывод на сообщения о пяти последних выполненных транзакциях"""
     file = open_file(os.path.join('../', 'date', 'operations.json'))
     transaction_sort_data = sort_data_list_transaction(file)
     transaction = sort_state_list_transaction(transaction_sort_data)
