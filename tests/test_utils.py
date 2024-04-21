@@ -1,4 +1,4 @@
-from src.utils import data_func, cards_transformation, account_transformation, sort_data_list_transaction
+from src.utils import data_func, cards_transformation, account_transformation, sort_data_list_transaction, sort_state_list_transaction
 
 
 def test_sort_data_list_transaction1():
@@ -23,3 +23,72 @@ def test_account_transformation1():
 
 def test_account_transformation2():
     assert account_transformation('Счет 38976430693692818358') == 'Счет **8358'
+
+
+def test_sort_data_list_transaction():
+    list1 = [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "2019-08-26T10:50:58.294041",
+        },
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+        },
+        {
+            "id": 214024827,
+            "state": "EXECUTED",
+            "date": "2018-12-20T16:43:26.929246",
+        }
+    ]
+
+    assert sort_data_list_transaction(list1) == [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+            "date": "2019-08-26T10:50:58.294041",
+        },
+        {
+            "id": 214024827,
+            "state": "EXECUTED",
+            "date": "2018-12-20T16:43:26.929246",
+        },
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+        }
+    ]
+
+
+def test_sort_state_list_transaction():
+    list1 = [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+        },
+        {
+            "id": 214024827,
+            "state": "CANCELED",
+        },
+        {
+            "id": 939719570,
+            "state": "EMPTY",
+        }
+    ]
+    assert sort_state_list_transaction(list1) == [
+        {
+            "id": 441945886,
+            "state": "EXECUTED",
+        },
+        {
+            "id": 939719570,
+            "state": "EMPTY",
+        },
+        {
+            "id": 214024827,
+            "state": "CANCELED",
+        }
+    ]
