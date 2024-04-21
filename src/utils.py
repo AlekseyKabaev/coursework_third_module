@@ -19,9 +19,9 @@ def sort_data_list_transaction(list_transaction):
     return sort_data_lst_trans
 
 
-def sort_state_list_transaction(sort_data_lst_trans):
+def sort_state_list_transaction(sort_data_lst):
     """Сортировка списка транзакций по ключу state"""
-    sort_state_lst_trans = sorted(sort_data_lst_trans, key=lambda x: x["state"], reverse=True)
+    sort_state_lst_trans = sorted(sort_data_lst, key=lambda x: x["state"], reverse=True)
     return sort_state_lst_trans
 
 
